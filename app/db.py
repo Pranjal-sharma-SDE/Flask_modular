@@ -7,8 +7,13 @@ logger=logging.getLogger(__name__)
 
 
 def get_db():
-    client = MongoClient(os.getenv('MONGODB_URI'))
-    db = client.get_default_database()
+    client = MongoClient(os.getenv('MONGO_URI'))
+    db = client['user_database'] 
+
+    # check if database exists
+    check_mongo_connection()
+    if check_mongo_connection():
+        logger.info('Connected to MongoDB')
     return db
 
 
@@ -16,11 +21,10 @@ def check_mongo_connection():
     """ Ping MongoDB to check connection """
 
     try:
-        client = MongoClient(os.getenv('MONGODB_URI'))
+        client = MongoClient(os.getenv('MONGO_URI'))
         client.admin.command('ping')
-        logger.info("MongoDB connected")
-        return True
+        print("Pinged your deployment. You successfully connected to MongoDB!")
     except Exception as e:
-        logger.error(f"MongoDB connection error: {e}", exc_info=True)
-        return False
+        print(e)
+        logger.error("Failed to connect to MongoDB")
 
