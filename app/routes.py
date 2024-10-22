@@ -1,8 +1,9 @@
 from flask import Blueprint,request,jsonify
 from .db import get_db, check_mongo_connection
-import logging
+from config import setup_logging
 
-logger=logging.getLogger(__name__)
+
+logger = setup_logging()
 
 main= Blueprint('main',__name__)
 db= get_db()

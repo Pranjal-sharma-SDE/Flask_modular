@@ -1,9 +1,12 @@
 from pymongo import MongoClient
 import os
-import logging
+from config import setup_logging
 
 # intialize logger
-logger=logging.getLogger(__name__)
+
+
+logger = setup_logging()
+
 
 
 def get_db():

@@ -10,12 +10,12 @@ load_dotenv()
 def create_app():
     """ Create and configure an instance of the Flask application. """
 
-    app = Flask(__name__)
+    app = Flask(__name__) 
     CORS(app, resources={r"/*": {"origins": "*"}})
 
-    setup_logging()
+    logger = setup_logging()
 
-    app.register_blueprint(main)
+    app.register_blueprint(main) # find out why to use this - 
 
     return app
 

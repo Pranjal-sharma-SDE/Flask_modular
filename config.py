@@ -24,6 +24,8 @@ def setup_logging():
         datefmt='%Y-%m-%d %H:%M:%S'  # Date format
     )
 
+    return logging.getLogger(__name__)
+
 
 if __name__ == '__main__':
     setup_logging()
